@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>台北景點一日遊推薦｜5大私房大自然秘境，開啟心靈治癒之旅</title>
+    <meta name="description" content="2026台北景點大公開！為您精選台北一日遊必去的私房大自然秘境。遠離城市喧囂，漫步橄欖綠森林與祕境沙灘，立即預約高質感治癒之旅。">
+    
+    <style>
+        /* ==========================================================================
+           1. 變數與基礎重設 (60-30-10 色彩配置)
+           ========================================================================== */
+        :root {
+            --bg-main: #FDFBF7;       /* 60% 淡米色：主背景 */
+            --bg-sub: #F4EFE6;        /* 次要淡米色：區塊區隔 */
+            --primary: #3B4D3A;       /* 30% 橄欖綠：主要文字、按鈕、品牌識別 */
+            --primary-light: #526B51; /* 橄欖綠亮調：Hover 效果 */
+            --accent: #D98353;        /* 10% 點綴色：暖陽橘，用於引導視覺焦點 */
+            --text-dark: #2C2C2C;     /* 深色字體 */
+            --text-light: #FFFFFF;    /* 白色字體 */
+            --shadow: 0 10px 30px rgba(59, 77, 58, 0.08);
+            --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            --nav-height: 80px;       /* 提取導覽列高度變數 */
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'PingFang TC', 'Microsoft JhengHei', sans-serif;
+            background-color: var(--bg-main);
+            color: var(--text-dark);
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: var(--transition);
+        }
+
+        img {
+            width: 100%;
+            height: 100%;
+            display: block;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* 解決錨點跳轉被固定導覽列遮擋的問題 */
+        section {
+            scroll-margin-top: var(--nav-height);
+        }
+
+        /* ==========================================================================
+           2. 固定式導覽列 (Sticky Navbar)
+           ========================================================================== */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: rgba(253, 251, 247, 0.95);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.04);
+            z-index: 1000;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: var(--nav-height);
+            position: relative;
+        }
+
+        .nav-logo {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--primary);
+            letter-spacing: 1px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .nav-logo::before {
+            content: '';
+            display: inline-block;
+            width: 12px;
+            height: 12px;
+            background-color: var(--accent);
+            border-radius: 50%;
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 32px;
+            list-style: none;
+            align-items: center;
+        }
+
+        .nav-list {
+            display: flex;
+            gap: 32px;
+            list-style: none;
+        }
+
+        .nav-link {
+            font-weight: 500;
+            color: var(--primary);
+            position: relative;
+            padding: 8px 0;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--accent);
+            transition: var(--transition);
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        .nav-btn {
+            display: inline-block;
+            background-color: var(--primary);
+            color: var(--text-light);
+            padding: 10px 24px;
+            border-radius: 50px;
+            font-weight: 500;
+            border: 1px solid var(--primary);
+        }
+
+        .nav-btn:hover {
+            background-color: var(--primary-light);
+            border-color: var(--primary-light);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(59, 77, 58, 0.2);
+        }
+
+        /* 隱藏漢堡選單的 Checkbox 控制器 */
+        #menu-toggle {
+            display: none;
+        }
+
+        .menu-icon {
+            display: none;
+            cursor: pointer;
+            padding: 10px;
+        }
+
+        .burger-line {
+            display: block;
+            width: 25px;
+            height: 2px;
+            background-color: var(--primary);
+            position: relative;
+            transition: var(--transition);
+        }
+
+        .burger-line::before, .burger-line::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 2px;
+            background-color: var(--primary);
+            transition: var(--transition);
+        }
+        .burger-line::before { top: -8px; }
+        .burger-line::after { bottom: -8px; }
+
+        /* ==========================================================================
+           3. 英雄主視覺 (Hero Section)
+           ========================================================================== */
+        .hero {
+            padding-top: var(--nav-height);
+            min-height: 90vh;
+            display: flex;
+            align-items: center;
+            background: linear-gradient(135deg, var(--bg-main) 60%, var(--bg-sub) 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 48px;
+            width: 100%;
+        }
+
+        .hero-content {
+            flex: 1;
+            max-width: 550px;
+        }
+
+        .hero-tag {
+            display: inline-block;
+            background-color: rgba(217, 131, 83, 0.1);
+            color: var(--accent);
+            padding: 6px 16px;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 24px;
+            letter-spacing: 1px;
+        }
+
+        .hero-title {
+            font-size: 3.2rem;
+            font-weight: 700;
+            color: var(--primary);
+            line-height: 1.25;
+            margin-bottom: 24px;
+        }
+
+        .hero-title span {
+            color: var(--accent);
+        }
+
+        .hero-desc {
+            font-size: 1.1rem;
+            color: #606060;
+            margin-bottom: 40px;
+        }
+
+        .hero-cta {
+            display: inline-block;
+            background-color: var(--accent);
+            color: var(--text-light);
+            padding: 16px 36px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 1.05rem;
+            box-shadow: 0 6px 20px rgba(217, 131, 83, 0.3);
+        }
+
+        .hero-cta:hover {
+            background-color: #c57243;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(217, 131, 83, 0.4);
+        }
+
+        .hero-image-wrap {
+            flex: 1;
+            position: relative;
+            height: 500px;
+        }
+
+        .hero-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 24px;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+
+        .hero-image-wrap:hover .hero-img {
+            transform: scale(1.02) translateY(-5px);
+        }
+
+        .hero-image-wrap::before {
+            content: '';
+            position: absolute;
+            z-index: -1;
+            top: 20px;
+            left: -20px;
+            width: 100%;
+            height: 100%;
+            border: 2px solid var(--primary);
+            border-radius: 24px;
+            opacity: 0.2;
+            transition: var(--transition);
+        }
+
+        .hero-image-wrap:hover::before {
+            top: 10px;
+            left: -10px;
+        }
+
+        /* ==========================================================================
+           4. 精選景點卡片區 (Spots Section)
+           ========================================================================== */
+        .spots {
+            padding: 100px 0;
+            background-color: var(--bg-sub);
+        }
+
+        .section-header {
+            text-align: center;
+            max-width: 600px;
+            margin: 0 auto 60px;
+        }
+
+        .section-title {
+            font-size: 2.4rem;
+            color: var(--primary);
+            margin-bottom: 16px;
+        }
+
+        .section-desc {
+            color: #707070;
+        }
+
+        .spots-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 32px;
+        }
+
+        .spot-card {
+            background-color: var(--bg-main);
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .spot-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(59, 77, 58, 0.15);
+        }
+
+        .spot-img-container {
+            position: relative;
+            height: 240px;
+            overflow: hidden;
+        }
+
+        .spot-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+
+        .spot-card:hover .spot-img {
+            transform: scale(1.1);
+        }
+
+        .spot-tag {
+            position: absolute;
+            top: 16px;
+            left: 16px;
+            background-color: rgba(253, 251, 247, 0.9);
+            color: var(--primary);
+            padding: 4px 12px;
+            border-radius: 4px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            z-index: 1;
+        }
+
+        .spot-content {
+            padding: 24px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .spot-title {
+            font-size: 1.3rem;
+            color: var(--primary);
+            margin-bottom: 12px;
+        }
+
+        .spot-text {
+            color: #666;
+            font-size: 0.95rem;
+            margin-bottom: 20px;
+            flex-grow: 1;
+        }
+
+        .spot-link {
+            font-weight: 600;
+            color: var(--primary);
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            font-size: 0.95rem;
+            margin-top: auto; /* 確保按鈕永遠對齊底部 */
+        }
+
+        .spot-link span {
+            transition: var(--transition);
+        }
+
+        .spot-card:hover .spot-link {
+            color: var(--accent);
+        }
+
+        .spot-card:hover .spot-link span {
+            transform: translateX(4px);
+        }
+
+        /* ==========================================================================
+           5. 響應式網頁設計 (RWD)
+           ========================================================================== */
+        
+        @media (max-width: 992px) {
+            .hero-title {
+                font-size: 2.6rem;
+            }
+            .hero-image-wrap {
+                height: 400px;
+            }
+            .spots-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 24px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            /* 顯示漢堡選單按鈕 */
+            .menu-icon {
+                display: block;
+                z-index: 1001;
+            }
+
+            /* 行動端導覽列下拉選單樣式 */
+            .nav-menu {
+                position: fixed;
+                top: var(--nav-height);
+                left: 0;
+                width: 100%;
+                height: calc(100vh - var(--nav-height));
+                background-color: var(--bg-main);
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                gap: 40px;
+                transform: translateY(-100%);
+                opacity: 0;
+                transition: var(--transition);
+                box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+            }
+
+            .nav-list {
+                flex-direction: column;
+                align-items: center;
+                gap: 40px;
+            }
+
+            .nav-btn-wrap {
+                width: 80%;
+                text-align: center;
+            }
+            .nav-btn {
+                width: 100%;
+            }
+
+            /* 當 Checkbox 被勾選時，展開選單 */
+            #menu-toggle:checked ~ .nav-menu {
+                transform: translateY(0);
+                opacity: 1;
+            }
+
+            /* 漢堡選單動畫效果 */
+            #menu-toggle:checked ~ .menu-icon .burger-line {
+                background-color: transparent;
+            }
+            #menu-toggle:checked ~ .menu-icon .burger-line::before {
+                transform: rotate(45deg);
+                top: 0;
+            }
+            #menu-toggle:checked ~ .menu-icon .burger-line::after {
+                transform: rotate(-45deg);
+                bottom: 0;
+            }
+
+            /* Hero 區塊調整 */
+            .hero-container {
+                flex-direction: column-reverse;
+                text-align: center;
+                gap: 32px;
+                padding: 40px 0;
+            }
+
+            .hero-content {
+                max-width: 100%;
+            }
+
+            .hero-title {
+                font-size: 2.2rem;
+            }
+
+            .hero-image-wrap {
+                width: 100%;
+                height: 320px;
+            }
+
+            .spots-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .spots {
+                padding: 60px 0;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="container nav-container">
+            <a href="#" class="nav-logo">OasisDesign</a>
+            
+            <input type="checkbox" id="menu-toggle">
+            <label for="menu-toggle" class="menu-icon">
+                <span class="burger-line"></span>
+            </label>
+
+            <div class="nav-menu">
+                <ul class="nav-list">
+                    <li><a href="#" class="nav-link">首頁</a></li>
+                    <li><a href="#spots" class="nav-link">精選美景</a></li>
+                    <li><a href="#" class="nav-link">深度體驗</a></li>
+                    <li><a href="#" class="nav-link">關於我們</a></li>
+                </ul>
+                <div class="nav-btn-wrap">
+                    <a href="#" class="nav-btn">立即預約</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <header class="hero">
+        <div class="container hero-container">
+            <div class="hero-content">
+                <span class="hero-tag">2026 年度山海企劃</span>
+                <h1 class="hero-title">活出自然的律動，<br>台北景點<span>心靈綠洲</span>。</h1>
+                <p class="hero-desc">遠離城市的喧囂，漫步於橄欖綠的森林與淡米色的沙灘之間。我們為您篩選了全台最精緻的私房秘境，開啟一場高質感的治癒之旅。</p>
+                <a href="#spots" class="hero-cta">探索秘境</a>
+            </div>
+            <div class="hero-image-wrap">
+                <img src="https://images.unsplash.com/photo-1571474004502-c1def214ac6d?auto=format&fit=crop&w=800&q=80" alt="台北大自然景點與療癒秘境森林">
+            </div>
+        </div>
+    </header>
+
+    <section id="spots" class="spots">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">精選台北秘境景點</h2>
+                <p class="section-desc">嚴選隱身於大台北的自然角落，為您的台北一日遊注入滿滿的森林芬多精與療癒能量。</p>
+            </div>
+
+            <div class="spots-grid">
+                <article class="spot-card">
+                    <div class="spot-img-container">
+                        <span class="spot-tag">陽明山</span>
+                        <img src="https://images.unsplash.com/photo-1549693578-d683be217e58?auto=format&fit=crop&w=600&q=80" alt="台北一日遊景點-陽明山迷霧森林" class="spot-img">
+                    </div>
+                    <div class="spot-content">
+                        <h3 class="spot-title">迷霧療癒森林</h3>
+                        <p class="spot-text">隱密在陽明山高處的黑森林，午後常有薄霧繚繞，陽光穿透高聳的杉木，是台北放鬆心靈的絕佳大自然去處。</p>
+                        <a href="#" class="spot-link">探索細節 <span>&rarr;</span></a>
+                    </div>
+                </</article>
+
+                <article class="spot-card">
+                    <div class="spot-img-container">
+                        <span class="spot-tag">北投</span>
+                        <img src="https://images.unsplash.com/photo-1528164344705-47542687000d?auto=format&fit=crop&w=600&q=80" alt="台北私房景點-北投地熱溪谷" class="spot-img">
+                    </div>
+                    <div class="spot-content">
+                        <h3 class="spot-title">翠綠地熱溪谷</h3>
+                        <p class="spot-text">遠離傳統溫泉區的喧鬧，這條隱密溪谷伴隨著淡淡硫磺香與潺潺流水聲，沿途被茂密的蕨類植物包圍。</p>
+                        <a href="#" class="spot-link">探索細節 <span>&rarr;</span></a>
+                    </div>
+                </article>
+
+                <article class="spot-card">
+                    <div class="spot-img-container">
+                        <span class="spot-tag">東北角</span>
+                        <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=600&q=80" alt="台北秘境景點-東北角蔚藍海岸" class="spot-img">
+                    </div>
+                    <div class="spot-content">
+                        <h3 class="spot-title">米色祕境沙灘</h3>
+                        <p class="spot-text">海浪拍打著奇岩怪石，這片幾乎沒有遊客的淡米色沙灘，是聆聽海潮之聲、放空一下午的頂級私房景點。</p>
+                        <a href="#" class="spot-link">探索細節 <span>&rarr;</span></a>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+</body>
+</html>
